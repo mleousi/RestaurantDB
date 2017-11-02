@@ -19,7 +19,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Restaurant1 {
+public class Restaurant {
     /**
      * @param args the command line arguments
      */    
@@ -125,7 +125,7 @@ public class Restaurant1 {
                                                 preparedStatement.executeUpdate();
                                                 System.out.println("Menu ready!");
                                                 break;
-                                            case 0: //na me paei sto prohgoumeno menu
+                                            case 0:
                                                 break;
                                             default:
                                                 System.out.println("Error");
@@ -195,7 +195,7 @@ public class Restaurant1 {
                                                     preparedStatement.executeUpdate();
                                                     System.out.println("Tables ready!");
                                                     break;
-                                                case 0: //na me paei sto prohgoumeno menu
+                                                case 0:
                                                     break;
                                                 default:
                                                     System.out.println("Error");
@@ -209,7 +209,7 @@ public class Restaurant1 {
                            System.out.println("Wrong key. Access denied.");
                            System.out.println();
                            times++;
-                           //na me paei sto prohgoumeno menou ksana
+                           //prohgoumeno menou
                         }                
                     }while(key!=1234 && times < 3);
                 }
@@ -348,7 +348,7 @@ public class Restaurant1 {
                                             int prev = Integer.parseInt(s_parts[0]);
                                             cst2 = connect.createStatement();
                                             crs3 = cst2.executeQuery("SELECT MAX(ID_reservation) AS max_value FROM Reservation");
-                                            crs3.next(); //ksekinaei sto result set
+                                            crs3.next();
                                             rid=crs3.getInt("max_value");
                                             rid=rid+1;
                                             for(int m=0;m<k;m++){
@@ -376,7 +376,7 @@ public class Restaurant1 {
                                             cst3 = connect.createStatement();
                                             crs4 = cst3.executeQuery("SELECT * FROM Reservation WHERE client_name='"+cid+"' ");
                                             while(crs4.next()){
-                                                System.out.println(crs4.getInt("ID_reservation") +"\t"+"\t"+ crs4.getString("client_name") +"\t"+ crs4.getInt("ID_table") +"\t"+"\t"+"\t"+ crs4.getInt("number_of_people") +"\t"+ crs4.getString("reservation_date")+"\t"+ crs4.getString("reservation_time")); //emfanizei to reservation
+                                                System.out.println(crs4.getInt("ID_reservation") +"\t"+"\t"+ crs4.getString("client_name") +"\t"+ crs4.getInt("ID_table") +"\t"+"\t"+"\t"+ crs4.getInt("number_of_people") +"\t"+ crs4.getString("reservation_date")+"\t"+ crs4.getString("reservation_time"));
                                             }
                                         }
                                         break;
@@ -391,7 +391,7 @@ public class Restaurant1 {
                                         System.out.println("Reservation deleted!");
                                         cst1 = connect.createStatement();
                                         break;
-                                    case 0: //na me paei sto prohgoumeno menu
+                                    case 0:
                                         break;
                                     default:
                                         System.out.println("Error");
@@ -430,7 +430,7 @@ public class Restaurant1 {
                                             ast = connect.createStatement();
                                             ars = ast.executeQuery("SELECT * FROM Menu");
                                             while(ars.next()){
-                                                System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
+                                                System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price"));
                                             }
                                             break;
                                         case 2:
@@ -488,7 +488,7 @@ public class Restaurant1 {
                                             ast = connect.createStatement();
                                             ars = ast.executeQuery("SELECT dish_name,quantity FROM Paragelia WHERE client_name='"+rid1+"' ");
                                             while(ars.next()){
-                                                System.out.println(ars.getString("dish_name") +"\t"+"\t"+ ars.getString("quantity")); //emfanizei to menu
+                                                System.out.println(ars.getString("dish_name") +"\t"+"\t"+ ars.getString("quantity"));
                                             }
                                             break;
                                         case 4:
@@ -547,7 +547,7 @@ public class Restaurant1 {
                                             }
                                             System.out.println("Your bill is "+bill+" euros");
                                             break;
-                                        case 0: //na me paei sto prohgoumeno menu
+                                        case 0:
                                             break;
                                         default:
                                             System.out.println("Error");
