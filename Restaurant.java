@@ -19,7 +19,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Restaurant {
+public class Restaurant1 {
     /**
      * @param args the command line arguments
      */    
