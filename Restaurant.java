@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package restaurant1;
+package restaurant;
 /**
  *
  * @author Maria
@@ -19,11 +19,11 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Restaurant1 {
+public class Restaurant {
     /**
      * @param args the command line arguments
      */    
-    private final String db_name="jdbc:mysql://localhost:3306/restaurant1", username="root", password="" ;
+    private final String db_name="jdbc:mysql://localhost:3306/restaurant", username="root", password="" ;
     public PreparedStatement preparedStatement = null, cps = null, cps1=null, cps2=null,aps = null;
     public Connection connect = null;
     public Statement statement = null, cst = null, cst1 = null, cst2=null, cst3=null ,ast = null, ast1 = null;
@@ -43,7 +43,7 @@ public class Restaurant1 {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        Restaurant1 program = new Restaurant1();
+        Restaurant program = new Restaurant();
         program.start();
     }
 
