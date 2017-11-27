@@ -108,11 +108,11 @@ public class Restaurant1 {
                                                 preparedStatement.setDouble(2, aprice);
                                                 preparedStatement.executeUpdate();
                                                 System.out.println("Menu ready!");
-                                                //ast = connect.createStatement();
-                                                //ars = ast.executeQuery("SELECT * FROM Menu");
-                                                //while(ars.next()){
-                                                //    System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
-                                                //} 
+                                                /*ast = connect.createStatement();
+                                                ars = ast.executeQuery("SELECT * FROM Menu");
+                                                while(ars.next()){
+                                                    System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
+                                                }*/ 
                                                 break;
                                             case 3:
                                                 System.out.println();
@@ -122,11 +122,11 @@ public class Restaurant1 {
                                                 preparedStatement = connect.prepareStatement("DELETE FROM Menu WHERE dish_name = '"+adish+"' ");
                                                 preparedStatement.executeUpdate();
                                                 System.out.println("Menu ready!");
-                                                //ast = connect.createStatement();
-                                                //ars = ast.executeQuery("SELECT * FROM Menu");
-                                                //while(ars.next()){
-                                                //    System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
-                                                //} 
+                                                /*ast = connect.createStatement();
+                                                ars = ast.executeQuery("SELECT * FROM Menu");
+                                                while(ars.next()){
+                                                    System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
+                                                }*/ 
                                                 break;
                                             case 4:
                                                 System.out.println();
@@ -135,7 +135,7 @@ public class Restaurant1 {
                                                 preparedStatement.executeUpdate();
                                                 System.out.println("Menu ready!");
                                                 break;
-                                            case 0: //na me paei sto prohgoumeno menu
+                                            case 0:
                                                 break;
                                             default:
                                                 System.out.println("Error");
@@ -186,11 +186,11 @@ public class Restaurant1 {
                                                             preparedStatement.setString(2, achair);
                                                             preparedStatement.executeUpdate();
                                                             System.out.println("Tables ready!");
-                                                            //ast1 = connect.createStatement();
-                                                            //ars2 = ast1.executeQuery("SELECT * FROM Trapezi");
-                                                            //while(ars2.next()){
-                                                             //   System.out.println(ars2.getString("ID_table") + " " + ars2.getString("chairs")); //emfanizei to trables
-                                                            //}
+                                                            /*ast1 = connect.createStatement();
+                                                            ars2 = ast1.executeQuery("SELECT * FROM Trapezi");
+                                                            while(ars2.next()){
+                                                                System.out.println(ars2.getString("ID_table") + " " + ars2.getString("chairs")); //emfanizei to trables
+                                                            }*/
                                                         }
                                                     }
                                                     break;
@@ -202,11 +202,11 @@ public class Restaurant1 {
                                                     preparedStatement = connect.prepareStatement("DELETE FROM Trapezi WHERE ID_table = '"+atable+"' ");
                                                     preparedStatement.executeUpdate();
                                                     System.out.println("Tables ready!");
-                                                    //ast1 = connect.createStatement();
-                                                    //ars2 = ast1.executeQuery("SELECT * FROM Trapezi");
-                                                    //while(ars2.next()){
-                                                    //    System.out.println(ars2.getString("ID_table") + " " + ars2.getString("chairs")); //emfanizei to trables
-                                                    //} 
+                                                    /*ast1 = connect.createStatement();
+                                                    ars2 = ast1.executeQuery("SELECT * FROM Trapezi");
+                                                    while(ars2.next()){
+                                                        System.out.println(ars2.getString("ID_table") + " " + ars2.getString("chairs")); //emfanizei to trables
+                                                    } */
                                                     break;
                                                 case 4:
                                                     System.out.println();
@@ -215,7 +215,7 @@ public class Restaurant1 {
                                                     preparedStatement.executeUpdate();
                                                     System.out.println("Tables ready!");
                                                     break;
-                                                case 0: //na me paei sto prohgoumeno menu
+                                                case 0:
                                                     break;
                                                 default:
                                                     System.out.println("Error");
@@ -229,7 +229,6 @@ public class Restaurant1 {
                            System.out.println("Wrong key. Access denied.");
                            System.out.println();
                            times++;
-                           //na me paei sto prohgoumeno menou ksana
                         }                
                     }while(key!=1234 && times < 3);
                 }
@@ -295,7 +294,6 @@ public class Restaurant1 {
                                             else if(tables[i][1] == 2) Q[3]=Q[3]+1;
                                             i=i+1;
                                         }
-                                        //System.out.println(Q[0]+" "+Q[1]+" "+Q[2]+" "+Q[3]);
                                         int j,sum;
                                         int previous = T[0];
                                         int difference = T[0];
@@ -364,7 +362,7 @@ public class Restaurant1 {
                                             int prev = Integer.parseInt(s_parts[0]);
                                             cst2 = connect.createStatement();
                                             crs3 = cst2.executeQuery("SELECT MAX(ID_reservation) AS max_value FROM Reservation");
-                                            crs3.next(); //ksekinaei sto result set
+                                            crs3.next();
                                             rid=crs3.getInt("max_value");
                                             rid=rid+1;
                                             for(int m=0;m<k;m++){
@@ -392,7 +390,7 @@ public class Restaurant1 {
                                             cst3 = connect.createStatement();
                                             crs4 = cst3.executeQuery("SELECT * FROM Reservation WHERE client_name='"+cid+"' ");
                                             while(crs4.next()){
-                                                System.out.println(crs4.getInt("ID_reservation") +"\t"+"\t"+ crs4.getString("client_name") +"\t"+ crs4.getInt("ID_table") +"\t"+"\t"+"\t"+ crs4.getInt("number_of_people") +"\t"+ crs4.getString("reservation_date")+"\t"+ crs4.getString("reservation_time")); //emfanizei to reservation
+                                                System.out.println(crs4.getInt("ID_reservation") +"\t"+"\t"+ crs4.getString("client_name") +"\t"+ crs4.getInt("ID_table") +"\t"+"\t"+"\t"+ crs4.getInt("number_of_people") +"\t"+ crs4.getString("reservation_date")+"\t"+ crs4.getString("reservation_time"));
                                             }
                                         }
                                         break;
@@ -407,7 +405,7 @@ public class Restaurant1 {
                                         System.out.println("Reservation deleted!");
                                         cst1 = connect.createStatement();
                                         break;
-                                    case 0: //na me paei sto prohgoumeno menu
+                                    case 0:
                                         break;
                                     default:
                                         System.out.println("Error");
@@ -447,7 +445,7 @@ public class Restaurant1 {
                                             ast = connect.createStatement();
                                             ars = ast.executeQuery("SELECT * FROM Menu");
                                             while(ars.next()){
-                                                System.out.println(ars.getString("dish_name") +"\t"+"\t"+ ars.getDouble("price")); //emfanizei to menu
+                                                System.out.println(ars.getString("dish_name") +"\t"+"\t"+ ars.getDouble("price"));
                                             }
                                             break;
                                         case 2:
@@ -460,7 +458,7 @@ public class Restaurant1 {
                                             Scanner quan = new Scanner(System.in);
                                             cquan = quan.nextInt();
                                             ast = connect.createStatement();
-                                            ars = ast.executeQuery("SELECT price FROM Menu WHERE dish_name='"+adish+"' "); //tha exei mia timi kathe fora
+                                            ars = ast.executeQuery("SELECT price FROM Menu WHERE dish_name='"+adish+"' ");
                                             cst = connect.createStatement();
                                             crs = cst.executeQuery("SELECT COUNT(*) AS fou FROM Menu WHERE dish_name='"+adish+"' ");
                                             crs.next();
@@ -480,7 +478,7 @@ public class Restaurant1 {
                                                 //if(crs1 == null){
                                                     cst2 = connect.createStatement();
                                                     crs3 = cst2.executeQuery("SELECT MAX(ID_order) AS max_value FROM Paragelia");
-                                                    crs3.next(); //ksekinaei sto result set
+                                                    crs3.next();
                                                     //System.out.println(crs3.getInt("max_value"));
                                                     
                                                     oid=crs3.getInt("max_value");
@@ -514,7 +512,7 @@ public class Restaurant1 {
                                             ast = connect.createStatement();
                                             ars = ast.executeQuery("SELECT dish_name,quantity FROM Paragelia WHERE client_name='"+rid1+"' ");
                                             while(ars.next()){
-                                                System.out.println(ars.getString("dish_name") +"\t"+"\t"+ ars.getString("quantity")); //emfanizei to menu
+                                                System.out.println(ars.getString("dish_name") +"\t"+"\t"+ ars.getString("quantity"));
                                             }
                                             break;
                                         case 4:
@@ -560,7 +558,6 @@ public class Restaurant1 {
                                                     cps1.executeUpdate();                                
                                                 }
                                                 else{
-                                                    //na me paei sto prohgoumeno menu
                                                 }
                                             }while(order_choice!=0);
                                             break;
@@ -572,11 +569,11 @@ public class Restaurant1 {
                                             bill=0.0;
                                             while(ars.next()){
                                                 bill = bill + ars.getDouble("bill");
-                                                //System.out.println(ars.getString("bill")); //emfanizei to menu
+                                                //System.out.println(ars.getString("bill"));
                                             }
                                             System.out.println("Your bill is "+bill+" euros");
                                             break;
-                                        case 0: //na me paei sto prohgoumeno menu
+                                        case 0:
                                             break;
                                         default:
                                             System.out.println("Error");
