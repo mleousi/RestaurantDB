@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package restaurant;
+package restaurant1;
 /**
  *
  * @author Maria
@@ -19,7 +19,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Restaurant {
+public class Restaurant1 {
     /**
      * @param args the command line arguments
      */    
@@ -43,7 +43,7 @@ public class Restaurant {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        Restaurant program = new Restaurant();
+        Restaurant1 program = new Restaurant1();
         program.start();
     }
 
