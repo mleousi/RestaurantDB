@@ -108,11 +108,6 @@ public class Restaurant1 {
                                                 preparedStatement.setDouble(2, aprice);
                                                 preparedStatement.executeUpdate();
                                                 System.out.println("Menu ready!");
-                                                /*ast = connect.createStatement();
-                                                ars = ast.executeQuery("SELECT * FROM Menu");
-                                                while(ars.next()){
-                                                    System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
-                                                }*/ 
                                                 break;
                                             case 3:
                                                 System.out.println();
@@ -122,11 +117,6 @@ public class Restaurant1 {
                                                 preparedStatement = connect.prepareStatement("DELETE FROM Menu WHERE dish_name = '"+adish+"' ");
                                                 preparedStatement.executeUpdate();
                                                 System.out.println("Menu ready!");
-                                                /*ast = connect.createStatement();
-                                                ars = ast.executeQuery("SELECT * FROM Menu");
-                                                while(ars.next()){
-                                                    System.out.println(ars.getString("dish_name") + " " + ars.getDouble("price")); //emfanizei to menu
-                                                }*/ 
                                                 break;
                                             case 4:
                                                 System.out.println();
@@ -186,11 +176,6 @@ public class Restaurant1 {
                                                             preparedStatement.setString(2, achair);
                                                             preparedStatement.executeUpdate();
                                                             System.out.println("Tables ready!");
-                                                            /*ast1 = connect.createStatement();
-                                                            ars2 = ast1.executeQuery("SELECT * FROM Trapezi");
-                                                            while(ars2.next()){
-                                                                System.out.println(ars2.getString("ID_table") + " " + ars2.getString("chairs")); //emfanizei to trables
-                                                            }*/
                                                         }
                                                     }
                                                     break;
@@ -202,11 +187,6 @@ public class Restaurant1 {
                                                     preparedStatement = connect.prepareStatement("DELETE FROM Trapezi WHERE ID_table = '"+atable+"' ");
                                                     preparedStatement.executeUpdate();
                                                     System.out.println("Tables ready!");
-                                                    /*ast1 = connect.createStatement();
-                                                    ars2 = ast1.executeQuery("SELECT * FROM Trapezi");
-                                                    while(ars2.next()){
-                                                        System.out.println(ars2.getString("ID_table") + " " + ars2.getString("chairs")); //emfanizei to trables
-                                                    } */
                                                     break;
                                                 case 4:
                                                     System.out.println();
@@ -275,19 +255,18 @@ public class Restaurant1 {
                                         cid = ID.nextLine();
 
                                         cst = connect.createStatement();
-                                        //crs1 = cst.executeQuery("SELECT * FROM Trapezi WHERE ID_table ΝΟΤ IN(SELECT ID_table FROM Reservation WHERE reservation_date='"+cdate+"' AND reservation_time < '"+(hour1+3)+"'  AND reservation_time > '"+(hour1-3)+"')"); //mesa:id pou einai krathmena, eksw:id pou den anhkoun sta krathmena
                                         crs1 = cst.executeQuery("Select * From Trapezi Where ID_table NOT IN(Select ID_table From Reservation Where reservation_date ='"+cdate+"' AND reservation_time < '"+(hour1+3)+"' AND reservation_time > '"+(hour1-3)+"')");//mesa:id pou einai krathmena, eksw:id pou den anhkoun sta krathmena                     
                                         cst = connect.createStatement();
                                         crs2 = cst.executeQuery("Select COUNT(*) AS num From Trapezi Where ID_table NOT IN(Select ID_table From Reservation Where reservation_date ='"+cdate+"' AND reservation_time < '"+(hour1+3)+"' AND reservation_time > '"+(hour1-3)+"')");
                                         crs2.next();
                                         int num = crs2.getInt("num"); //posa exw kena
-                                        int[][] tables = new int[num][2]; //grammes oses to num(kena trapezia) kai sthles 2
+                                        int[][] tables = new int[num][2];
                                         int i=0;
                                         int[] Q = new int[4]; //posothtes trapeziwn
                                         int[] T = {6,4,3,2}; //eidh trapeziwn
                                         while(crs1.next()){
                                             tables[i][0] = Integer.parseInt(crs1.getString("ID_table"));
-                                            tables[i][1] = Integer.parseInt(crs1.getString("chairs")); //ta vazw se ena pinaka
+                                            tables[i][1] = Integer.parseInt(crs1.getString("chairs"));
                                             if(tables[i][1] == 6) Q[0]=Q[0]+1;
                                             else if(tables[i][1] == 4) Q[1]=Q[1]+1;
                                             else if(tables[i][1] == 3) Q[2]=Q[2]+1;
@@ -306,7 +285,7 @@ public class Restaurant1 {
                                             do{
                                                 if ((T[i] - chairs < difference) && (Q[i] > 0) && (T[i] >= chairs)){ //psaxnw analoga me tis diathesimes posothtes twn eidwn na vrw pou xwrane kalutera ta atoma wste na exw th mikroterh diafora
                                                     difference = T[i] - chairs;
-                                                    done = true; //evala ta atoma
+                                                    done = true;
                                                     sum = T[i];
                                                     s = ""+sum;
                                                 }
@@ -317,8 +296,7 @@ public class Restaurant1 {
                                         difference = chairs;   
                                         i = 0;
                                         
-                                        if (!done){ //gia tous sunduasmous trapeziwn (done==false)
-                                             // Kanw to idio pragma gia oles tis xwrhtikothtes twn trapeziwn 6,4,3,2 mexri na kalupsw ta atoma
+                                        if (!done){ //gia tous sunduasmous trapeziwn
                                             do{
                                                 j = 0;
                                                 // vriskw posa trapezia tha valw apo thn sugkekrimenh xwrhtikothta
@@ -328,7 +306,7 @@ public class Restaurant1 {
                                                 
                                                 not_enough = false;
                                                 // An dn uparxoun tosa diathesima trapezia apo thn sugkekrimenh xwrhtikothta, vazw osa exw
-                                                if (Q[i] < (j-1)){ //an den exw tosa trapezia osa thelw na valw
+                                                if (Q[i] < (j-1)){
                                                     j = Q[i] + 1;
                                                     not_enough = true; // An dn uparxoun tosa diathesima trapezia apo thn sugkekrimenh xwrhtikothta, vazw osa exw
                                                 }
@@ -349,8 +327,6 @@ public class Restaurant1 {
                                             s = s + previous;
                                             sum = sum + previous;
                                         }
-                                        
-                                        // an exw tsekarei ola ta trapezia kai dn exoun kalufthei ta atoma tote dn uparxei sundiasmos
                                         if (sum < chairs) System.out.println("No combination available.Reservation incomplete");
                                         else{
                                             System.out.println("Combination:" + s);
@@ -463,23 +439,17 @@ public class Restaurant1 {
                                             crs = cst.executeQuery("SELECT COUNT(*) AS fou FROM Menu WHERE dish_name='"+adish+"' ");
                                             crs.next();
                                             ars.next();
-                                            //while(ars.next()){ System.out.println(ars.getDouble("price")); }
                                             if(crs.getInt("fou")!=0){
-                                            //if(ars != null){
-                                                //ars.next();
                                                 ast = connect.createStatement();
                                                 ars1 = ast.executeQuery("SELECT quantity,bill FROM Paragelia WHERE client_name='"+rid1+"' AND dish_name='"+adish+"' ");
-                                                //while(ars1.next()){ System.out.println(ars1.getInt("quantity")+" "+ ars1.getDouble("bill") ); }
                                                 cst1 = connect.createStatement();
                                                 crs1 = cst1.executeQuery("SELECT COUNT(*) AS pou FROM Paragelia WHERE client_name='"+rid1+"' AND dish_name='"+adish+"' ");
                                                 crs1.next();
                                                 ars1.next();
                                                 if(crs1.getInt("pou")==0){
-                                                //if(crs1 == null){
                                                     cst2 = connect.createStatement();
                                                     crs3 = cst2.executeQuery("SELECT MAX(ID_order) AS max_value FROM Paragelia");
                                                     crs3.next();
-                                                    //System.out.println(crs3.getInt("max_value"));
                                                     
                                                     oid=crs3.getInt("max_value");
                                                     oid=oid+1;
@@ -492,9 +462,7 @@ public class Restaurant1 {
                                                     cps.setDouble(6, ars.getDouble("price")*cquan);
                                                     cps.executeUpdate();
                                                 }
-                                                else{
-                                                    //ars1.next();
-                                                    //ars.next();
+                                                else{                                                    
                                                     cps1=connect.prepareStatement("UPDATE Paragelia SET quantity=?, bill=? WHERE client_name='"+rid1+"' AND dish_name='"+adish+"'");
                                                     cps1.setInt(1, ars1.getInt("quantity")+1 );
                                                     cps1.setDouble(2, (ars1.getInt("quantity")+1) * (ars.getDouble("price")) );
@@ -538,8 +506,6 @@ public class Restaurant1 {
                                                     crs3.next();
                                                     ars.next();
                                                     if( crs3.getInt("lou")!=0 ){
-                                                    //if(ars != null){
-                                                        //ars.next();
                                                         if( ars.getInt("quantity")-1 < 1 ){
                                                             cps1=connect.prepareStatement("DELETE FROM Paragelia WHERE client_name='"+rid1+"' AND dish_name='"+adish+"' ");
                                                             cps1.executeUpdate();
@@ -569,7 +535,6 @@ public class Restaurant1 {
                                             bill=0.0;
                                             while(ars.next()){
                                                 bill = bill + ars.getDouble("bill");
-                                                //System.out.println(ars.getString("bill"));
                                             }
                                             System.out.println("Your bill is "+bill+" euros");
                                             break;
