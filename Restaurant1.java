@@ -166,7 +166,7 @@ public class Restaurant1 {
                                                     achair = table.nextLine();
                                                     statement = connect.createStatement();
                                                     resultSet = statement.executeQuery("SELECT MAX(ID_table) AS max_value FROM Trapezi");
-                                                    resultSet.next(); //ksekinaei sto result set
+                                                    resultSet.next();
                                                     int id=resultSet.getInt("max_value");
                                                     id=id+1;
                                                     for(int i=0;i<4;i++){
